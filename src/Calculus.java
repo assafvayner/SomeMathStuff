@@ -19,7 +19,7 @@ public class Calculus {
         for (double i = x1; i < x2; i += deltaX) {
             area +=  deltaX * f.apply(i);
         }
-        return flip*area;
+        return flip*roundOrNot(area);
     }
 
     public static double derivativeAtPoint(Function<Double, Double> f, double x){
