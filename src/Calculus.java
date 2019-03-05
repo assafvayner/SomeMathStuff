@@ -2,7 +2,7 @@ import java.util.function.Function;
 
 public class Calculus {
 
-    private static final double deltaX = 0.00001;
+    private static final double deltaX = 0.0001;
     public static final double e = 2.718281828459045;
     public static final double pi = Math.PI;
 
@@ -25,7 +25,16 @@ public class Calculus {
     public static double derivativeAtPoint(Function<Double, Double> f, double x){
         double slope1 = (f.apply(x)-f.apply(x-deltaX))/deltaX;
         double slope2 = (f.apply(x + deltaX)-f.apply(x))/deltaX;
-        return avg(slope1,slope2);
+        return roundOrNot(avg(slope1,slope2));
+    }
+
+    private static double roundOrNot(double a){
+        if(a%0.5 < 0.05){
+            return a - a%0.5;
+        }else if((a + 0.001) %0.5 < 0.05){
+            return a + 0.001 - (a+0.001)%0.5;
+        }
+        return a;
     }
 
     private static double avg(double a, double b) {
